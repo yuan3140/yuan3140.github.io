@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>simple-uploader.js - Multiple simultaneous, stable and resumable uploads via the HTML5 File API</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
+    <script src="uploader.js"></script>
+  </head>
+  <body>
+    <div id="frame">
+
+      <h1>simple-uploader.js</h1>
+      <p>It's a JavaScript library providing multiple simultaneous, stable and resumable uploads via the HTML5 File API.</p>
+
+      <p>The library is designed to introduce fault-tolerance into the upload of large files through HTTP. This is done by splitting each files into small chunks; whenever the upload of a chunk fails, uploading is retried until the procedure completes. This allows uploads to automatically resume uploading after a network connection is lost either locally or to the server. Additionally, it allows for users to pause and resume uploads without loosing state.</p>
+
+      <p>simple-uploader.js relies on the HTML5 File API and the ability to chunks files into smaller pieces. Currently, this means that support is limited to Firefox 4+ and Chrome 11+.</p>
+
+      <hr/>
+
+      <h3>Demo</h3>
+
+      <div class="uploader-error">
+        Your browser, unfortunately, is not supported by simple-uploader.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.
+      </div>
+      <div class="uploader-drop" ondragenter="jQuery(this).addClass('uploader-dragover');" ondragend="jQuery(this).removeClass('uploader-dragover');" ondrop="jQuery(this).removeClass('uploader-dragover');">
+        Drop files here to upload or <a class="uploader-browse-folder"><u>select folder</u></a> or <a class="uploader-browse"><u>select from your computer</u></a> or <a class="uploader-browse-image"><u>select images</u></a>
+      </div>
+      <div class="uploader-progress">
+        <table>
+          <tr>
+            <td width="100%"><div class="progress-container"><div class="progress-bar"></div></div></td>
+            <td class="progress-text" nowrap="nowrap"></td>
+            <td class="progress-pause" nowrap="nowrap">
+              <a href="javascript:;" onclick="r.upload()" class="progress-resume-link"><img src="resume.png" title="Resume upload" /></a>
+              <a href="javascript:;" onclick="r.pause()" class="progress-pause-link"><img src="pause.png" title="Pause upload" /></a>
+              <a href="javascript:;" onclick="r.cancel()" class="progress-cancel-link"><img src="cancel.png" title="Cancel upload" /></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <ul class="uploader-list"></ul>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
